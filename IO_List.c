@@ -1,7 +1,7 @@
 
 #include"IO_List.h"
 
-void List_show(Node* head){
+void IO_List_show(Node* head){
     Node* pTemp1 = head;
     while (pTemp1 != NULL)
     {
@@ -9,4 +9,9 @@ void List_show(Node* head){
         pTemp1 = pTemp1->pNext;
     }
     printf("\n");
+}
+
+void IO_List_showMessage(List_StatusType status){
+    // uint8_t *message = MESSAGE_LIST[status];
+    printf("%s\n", MESSAGE_LIST[status]);
 }

@@ -36,3 +36,49 @@ List_StatusType List_addHead(int32_t data){
     return status;
 }
 
+List_StatusType List_addTail(int32_t data){
+    List_StatusType status = LIST_OK;
+    Node* pTmep1 = List_createNewNode(data);
+    Node* pTemp2 = NULL;
+    if(pTmep1 == NULL){
+        status = LIST_OVER_MEMORY;
+    }else{
+        if(HEAD == NULL){
+            HEAD = pTmep1;
+            len++;
+        }else{
+            pTemp2 = HEAD;
+            while (pTemp2->pNext != NULL)
+            {
+                pTemp2 = pTemp2->pNext;
+            }
+            pTemp2->pNext = pTmep1;
+            len++;
+        }
+    }
+    return status;
+}
+
+List_StatusType List_addAtNth(int32_t data, int32_t pos){       // pos = 1, 2, 3, ...
+    List_StatusType status = LIST_OK;
+    Node* pTmep1 = List_createNewNode(data);
+    Node* pTemp2 = NULL;
+    int32_t i;                                  // bien dem
+    if(pTmep1 == NULL){
+        status = LIST_OVER_MEMORY;
+    }else{
+        if(1 == pos){
+            status = List_addHead(data);
+        }else if(len+1 <= pos){
+            status = List_addTail(data);
+        }else if(1 < pos && len+1 > pos){
+            pTemp2 = HEAD;
+            for(i = 1; i < pos-1; i++){
+                pTemp2 = pTemp2->pNext;
+            }
+            pTmep1->pNext = pTemp2->pNext;
+            pTemp2->pNext = pTmep1;
+        }
+    }
+    return status;
+}

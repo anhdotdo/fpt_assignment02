@@ -11,3 +11,5 @@ Node* List_getList();
 int32_t List_getLength();
 Node* List_createNewNode(int32_t data);
 List_StatusType List_addHead(int32_t data);
+List_StatusType List_addTail(int32_t data);
+List_StatusType List_addAtNth(int32_t data, int32_t pos);
