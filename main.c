@@ -28,7 +28,8 @@ int8_t main(){
 
     uint8_t user_input;
     List_StatusType status = LIST_OK;           // default status of the list
-    int32_t data;
+    int32_t data, pos;
+    Node* pTemp = NULL;
     do{
         do{
             scanf("%s", &user_input);
@@ -39,10 +40,23 @@ int8_t main(){
         case 'i':
             printf("Enter data: ");
             scanf("%d", &data);
-            status = List_addHead(data);
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            status = List_addAtNth(data, pos);
+            break;
+        case 'd':
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            status = List_deleteAtNth(pos);
             break;
         case 'p':
-            IO_List_show(List_getList());
+            pTemp = List_getList();
+            while(pTemp != NULL){
+                printf("%d ", pTemp->data);
+                pTemp = pTemp->pNext;
+            }
+            printf("\n");
+            // IO_List_show(List_getList());
             break;
         default:
             break;

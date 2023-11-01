@@ -8,11 +8,17 @@ typedef struct Node{            // struct data type
     struct Node* pNext;
 }Node;
 
-
+typedef struct{
+    uint8_t* name;
+    uint32_t power;
+    uint32_t unit_price;
+}DeviceType;
 
 typedef enum {                  // status type
     LIST_OVER_MEMORY,
-    LIST_OK
+    LIST_OK,
+    LIST_EMPTY,
+    LIST_OUT_OF_RANGE
 }List_StatusType;
 
-#endif
+#endif /*_MYLIB_LIST_H_*/

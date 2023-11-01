@@ -78,7 +78,63 @@ List_StatusType List_addAtNth(int32_t data, int32_t pos){       // pos = 1, 2, 3
             }
             pTmep1->pNext = pTemp2->pNext;
             pTemp2->pNext = pTmep1;
+            len++;
         }
+    }
+    return status;
+}
+
+List_StatusType List_deleteHead(){
+    List_StatusType status = LIST_OK;
+    Node* pTemp1 = NULL;
+    if(HEAD == NULL){
+        status = LIST_EMPTY;
+    }else{
+        pTemp1 = HEAD;
+        HEAD = HEAD->pNext;
+        free(pTemp1);
+        len--;
+    }
+    return status;
+}
+
+List_StatusType List_deleteTail(){
+    List_StatusType status = LIST_OK;
+    Node* pTemp1 = NULL, *pTemp2 = NULL;
+    if(HEAD == NULL){
+        status = LIST_EMPTY;
+    }else{
+        pTemp1 = HEAD;
+        while (pTemp1->pNext->pNext != NULL)
+        {
+            pTemp1 = pTemp1->pNext;
+        }
+        pTemp2 = pTemp1->pNext;
+        pTemp1->pNext = NULL;
+        free(pTemp1);
+        len--;
+    }
+    return status;
+}
+
+List_StatusType List_deleteAtNth(int32_t pos){
+    List_StatusType status = LIST_OK;
+    Node* pTemp1 = NULL, *pTemp2 = NULL;
+    int32_t i;
+    if (1 == pos)
+    {
+        status = List_deleteHead();
+    }else if(1 < pos && len >= pos){
+        pTemp1 = HEAD;
+        for(i = 1; i < pos-1; i++){
+            pTemp1 = pTemp1->pNext;
+        }
+        pTemp2 = pTemp1->pNext;
+        pTemp1->pNext = pTemp2->pNext;
+        free(pTemp2);
+        len--;
+    }else if(len < pos){
+        status = LIST_OUT_OF_RANGE;
     }
     return status;
 }

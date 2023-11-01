@@ -13,3 +13,6 @@ Node* List_createNewNode(int32_t data);
 List_StatusType List_addHead(int32_t data);
 List_StatusType List_addTail(int32_t data);
 List_StatusType List_addAtNth(int32_t data, int32_t pos);
+List_StatusType List_deleteHead();
+List_StatusType List_deleteTail();
+List_StatusType List_deleteAtNth(int32_t pos);
